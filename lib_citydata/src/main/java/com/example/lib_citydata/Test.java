@@ -22,8 +22,11 @@ public class Test {
     public static void main(String[] args) {
         try {
             // 2018年11月中华人民共和国县以上行政区划代码网页
-            Document doc = Jsoup.connect("http://www.mca.gov.cn/article/sj/xzqh/2018/201804-12/20181101021046.html")
+            //Document doc = Jsoup.connect("http://www.mca.gov.cn/article/sj/xzqh/2018/201804-12/20181101021046.html").maxBodySize(0).get();
+
+            Document doc = Jsoup.connect("http://www.mca.gov.cn/article/sj/xzqh/2020/2020/202003301019.html")
                     .maxBodySize(0).get();
+
             Elements elements = doc.getElementsByClass("xl7024197");
             List<String> stringList = elements.eachText();
             List<String> stringName = new ArrayList<String>();
@@ -49,7 +52,7 @@ public class Test {
 //			JSONFormatUtils.jsonWriter(provinceList, path);
 //
             List<Province> provinceList = getProvincesList(stringName, stringCode);
-            String path = FileUtils.getProjectDir() + "/2018年11月中华人民共和国县以上行政区划代码" + ".json";
+            String path = FileUtils.getProjectDir() + "/2020年2月中华人民共和国县以上行政区划代码" + ".json";
             JSONFormatUtils.jsonWriter(provinceList, path);
         } catch (IOException e) {
             e.printStackTrace();
